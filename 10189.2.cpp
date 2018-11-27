@@ -1,0 +1,100 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    long long n,m,i,j,k,counter;
+    char mine[110][110];
+    char field[110][110];
+    char fields[100][110][110];
+    counter = 0;
+    while(1)
+    {
+        for(i=0;i<110;i++)
+        {
+            for(j=0;j<110;j++)
+            {
+                field[i][j]='0';
+            }
+        }
+        cin>>n;
+        cin>>m;
+        if(n==0||m==0)
+        {
+            break;
+        }
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                cin>>mine[i][j];
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                if(mine[i][j]=='*')
+                {
+                    field[i][j]='*';
+                    if(mine[i][j+1]!='*')
+                    {
+                        field[i][j+1]++;
+                    }
+                    if(mine[i][j-1]!='*')
+                    {
+                        field[i][j-1]++;
+                    }
+                    if(mine[i+1][j]!='*')
+                    {
+                        field[i+1][j]++;
+                    }
+                    if(mine[i+1][j+1]!='*')
+                    {
+                        field[i+1][j+1]++;
+                    }
+                    if(mine[i+1][j-1]!='*')
+                    {
+                        field[i+1][j-1]++;
+                    }
+                    if(mine[i-1][j]!='*')
+                    {
+                        field[i-1][j]++;
+                    }
+                    if(mine[i-1][j+1]!='*')
+                    {
+                        field[i-1][j+1]++;
+                    }
+                    if(mine[i-1][j-1]!='*')
+                    {
+                        field[i-1][j-1]++;
+                    }
+                }
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            for(j=0l;j<m;j++)
+            {
+                fields[counter][i][j]=field[i][j];
+            }
+        }
+        counter++;
+    }
+    for(k=0;k<counter;k++)
+    {
+        if(k>0)
+        {
+            cout<<endl;
+        }
+        cout<<"Field #"<<k+1<<": "<<endl;
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                cout<<fields[k][i][j];
+            }
+        }
+        cout<<endl;
+    }
+    return 0;
+}
